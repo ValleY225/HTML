@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <script>
+    //                    Task week 10
+    function task101(){
+      let library = [
+        {title :"Inferno",  author:"D.Brown", year: 1992, isAvailable: true},
+        {title :"Keys of kingdom",  author:"G.Nixs", year: 1926, isAvailable: true},
+        {title :"Get Lucky",  author:"Random", year: 1127, isAvailable: false},
+        {title :"History",  author:"Gerardo", year: 1753, isAvailable: false}
+    ]
+      function listAvailableBooks(){
+        for (let count of library){
+            if (count.isAvailable){
+              console.log(count.title)
+          }
+        }
+      }
+    listAvailableBooks()
+    } //task101()
+
+    function task102(){
+      let cart = [
+        {name:"Milk", price:675, quantity:1},
+        {name:"Bread", price:135, quantity:2},
+        {name:"Cheese", price:480, quantity:2},
+        {name:"Biscuit", price:795, quantity:1}
+      ]
+      function calculateTotal(){
+        let sum = 0
+        for (let count of cart){
+          sum += count.price * count.quantity
+        }
+        console.log("Total price: "+sum)
+      }
+      calculateTotal()
+      function addItem(){
+        let item = {
+          name: prompt("Item name:"),
+          price: prompt("Item price:"),
+          quantity: prompt("Item quantity:")
+        }
+        cart.push(item)
+        console.log("Items in th cart")
+        for(let count of cart){
+          console.log(count)
+        }
+      } addItem()
+      function removeItem(itemName){
+        cart = cart.filter(el => el.name !== itemName);
+      } removeItem("Bread")
+
+      console.log(cart)
+    } //task102()
+
+     function task103(){
+       let student = {name: "Adam", grades:[68,72,91,83,76]}
+       function calculateAverage(){
+         let total = 0
+         for(let count of student.grades){
+           total += count
+         }
+         return total/student.grades.length
+       }
+       console.log("Average grade is " + calculateAverage())
+       function getHighestGrade(){
+         let max = 0
+         for(let count of student.grades){
+          if(max < count){max = count}
+         }
+         return max;
+       }
+       console.log("Maximum grade is " + getHighestGrade())
+     }//task103()
+
+    function task104(){
+      let employee = [{name:"Adam1" , position: "HR" , salary:5, yearsOfService:5},
+                      {name:"Adam2" , position: "Employee" , salary:5, yearsOfService:3},
+                      {name:"Adam3" , position: "Manager" , salary:5, yearsOfService:4},
+                      {name:"Adam4" , position: "Security" , salary:5, yearsOfService:2} ]
+      function findEmployeesWithMoreThanXYears(years){
+        let list = []
+        for (let count of employee){
+          if(count.yearsOfService > years ){
+            list.push(count.name);
+          }
+        }return list
+      } console.log(findEmployeesWithMoreThanXYears(2));
+    }//task104()
+
+    function task105(){
+      let Arr = ['apple', 'banana', 'cherry', 'coconut', 'watermelon'];
+      function reverseAndSort(arr) {
+
+        let reversedArray = arr.map(str => str.split('').reverse().join(''));
+        reversedArray.sort();
+        return reversedArray;
+      }console.log(reverseAndSort(Arr));
+    } //task105()
+
+    function task106(){
+      let playlist = [
+        {title: "Fall apart", artist: "Twenty One Pilots", duration: 215, isFavorite: true },
+        {title: "Rock n Roll train", artist: "AC|DC", duration: 225, isFavorite: false },
+        {title: "Balaclava", artist: "Arctic Monkeys", duration: 244, isFavorite: true },
+        {title: "Shadow Flower", artist: "DJMAX", duration: 276, isFavorite: false },
+        {title: "Intergalactic", artist: "Bestie Boys", duration: 298, isFavorite: true }
+      ];
+      function getFavoriteSongs() {
+        return playlist.filter(song => song.isFavorite);
+      }console.log("Favorite Songs:", getFavoriteSongs());
+      function getTotalPlaylistDuration() {
+        return playlist.reduce((totalDuration, song) => totalDuration + song.duration, 0);
+      }
+
+      console.log("Total Duration:", getTotalPlaylistDuration());
+    }//task106()
+
+    function task107(){
+      let inventory = [
+        {name: "Laptop", quantity: 10, price: 1000},
+        {name: "Mouse", quantity: 30, price: 20},
+        {name: "Keyboard", quantity: 30, price: 50},
+        {name: "Monitor", quantity: 15, price: 200}
+      ];
+      function checkStock(productName) {
+        const product = inventory.find(item => item.name === productName);
+        return product.quantity;
+      }
+      console.log(checkStock("Laptop"));
+      function restockProduct(productName, amount) {
+        const product = inventory.find(item => item.name === productName);
+        product.quantity += amount;
+        return (product.name + "now have "+product.quantity+ " in stock");
+      }
+      console.log(restockProduct("Mouse", 20));
+      function sellProduct(productName, amount) {
+        const product = inventory.find(item => item.name === productName);
+        if (product.quantity >= amount) {
+          product.quantity -= amount;
+          const totalCost = amount * product.price;
+          return (amount+" of "+productName+" costs: "+ totalCost);
+        } else {
+          return ("Quantity error");
+        }
+      }
+      console.log(sellProduct("Keyboard", 5));
+    } //task107()
+
+    function task108(){
+      let movies = [
+        {title:"movie1", director: "director1", year: 2010, rating: 8.8},
+        {title:"movie2", director: "director2", year: 1999, rating: 8.7},
+        {title:"movie3", director: "director3", year: 2019, rating: 8.6},
+        {title:"movie4", director: "director4", year: 2014, rating: 8.9},
+        {title:"movie5", director: "director5", year: 1972, rating: 9.2}
+      ];
+      function getTopRatedMovies(minRating) {
+        let topRatedMovies = movies.filter(movie => movie.rating > minRating);
+        topRatedMovies.sort((a, b) => a.year - b.year);
+        return topRatedMovies.map(movie => movie.title);
+      }
+      console.log(getTopRatedMovies(8.5));
+    } //task108()
+
+    function task109(){
+      let familyTree =
+        {name: "John", age: 70, children: [
+            {name: "Alice", age: 45, children: [
+              { name: "Bob", age: 20, children: [] },
+              { name: "Charlie", age: 18, children: [] }]},
+            {name: "David", age: 50, children: [
+              { name: "Eve", age: 25, children: [] }
+            ]
+          }
+        ]
+      }
+      function findOldestPerson(tree) {
+        let oldest = { name: tree.name, age: tree.age };
+        for (let child of tree.children) {
+          let oldestChild = findOldestPerson(child);
+          if (oldestChild.age > oldest.age) {
+            oldest = oldestChild;
+          }
+        }
+        return oldest;
+      }
+      let oldestPerson = findOldestPerson(familyTree);
+      console.log(`The oldest person is ${oldestPerson.name}, age ${oldestPerson.age}.`);
+    } //task109()
+
+    function task1010(){
+      let menu = [
+        { name: "Pizza", price: 10, category: "Main" },
+        { name: "Burger", price: 8, category: "Main" },
+        { name: "Salad", price: 5, category: "Secondary" },
+        { name: "Soup", price: 6, category: "Secondary" },
+        { name: "Ice Cream", price: 4, category: "Dessert" },
+        { name: "Cake", price: 7, category: "Dessert" }
+      ];
+      function generateMenuByCategory(categoryName, sortOrder) {
+        let filteredMenu = menu.filter(item => item.category === categoryName);
+        if (sortOrder === "asc") {
+          filteredMenu.sort((a, b) => a.price - b.price);
+        } else if (sortOrder === "desc") {
+          filteredMenu.sort((a, b) => b.price - a.price);
+        }
+        return filteredMenu.map(item => `${item.name} - $${item.price}`);
+      }
+      console.log(generateMenuByCategory("Main", "asc"));
+      console.log(generateMenuByCategory("Dessert", "desc"));
+    }//task1010()
+
+    function task1011(){
+      function deepCompare(obj1, obj2) {
+        if (obj1 === obj2) return true;
+        if (typeof obj1 !== 'object' || obj1 === null || typeof obj2 !== 'object' || obj2 === null) {
+          return false;
+        }
+        let keys1 = Object.keys(obj1);
+        let keys2 = Object.keys(obj2);
+        if (keys1.length !== keys2.length) {
+          return false;
+        }
+        for (let key of keys1) {
+          if (!keys2.includes(key) || !deepCompare(obj1[key], obj2[key])) {
+            return false;
+          }
+        }
+        return true;
+      }
+      let objA = {
+        name: "Alice", age: 30,
+        details: {
+          hobbies: ["reading", "traveling"],
+          location: {
+            city: "Wonderland",
+            zip: 12345
+          }
+        }
+      };
+
+      let objB = {
+        name: "Alice", age: 30,
+        details: {
+          hobbies: ["reading", "traveling"],
+          location: {
+            city: "Wonderland",
+            zip: 12345
+          }
+        }
+      };
+      console.log(deepCompare(objA, objB));
+    }
+
+    function task1012(){
+      let products = [
+        { name: "Laptop", price: 1000, category: "Electronics" },
+        { name: "Phone", price: 500, category: "Electronics" },
+        { name: "T-shirt", price: 200, category: "Clothing" },
+        { name: "Jeans", price: 400, category: "Clothing" },
+        { name: "Microphone", price: 380, category: "Electronics" }
+      ];
+      function applyDiscount(categoryName, discountPercentage){
+        products.forEach(products => products.price - (products.price * (discountPercentage/100)))
+          for(let count of products){
+            if(categoryName === count.category){
+              console.log(count.category+ " for "+ count.price)
+            }
+          }
+      }
+      applyDiscount("Electronics", 15)
+      console.log(products)
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Quiz</title>
+  <link rel="stylesheet" href="Endterm.css">
+</head>
+<body>
+<div class="quiz-container">
+  <div class="quiz-header">
+    <h1> Typing Quiz </h1>
+  </div>
+  <div id="question">Loading question...</div>
+  <input type="text" id="answerInput" placeholder="Type your answer here...">
+  <div class="buttons">
+    <button id="submit">Submit</button>
+    <button id="next" disabled>Next</button>
+  </div>
+  <div id="score">Score: 0</div>
+  <div id="progress-text">Question 0 of 0</div>
+  <progress id="progress-bar" value="0" max="100"></progress>
+  <div id="timer">Time left: 10s</div>
+  <div id="results">
+    <h2>Final Results</h2>
+    <p id="final-score">Score: 0</p>
+    <p id="final-percentage">Percentage: 0%</p>
+  </div>
+</div>
+<div class="popup" id="popup">Answer is Correct!</div>
+<script src="Endterm.js"></script>
+</body>
+</html>

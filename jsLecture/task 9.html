@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <script>
+    function t91(){
+      let ask = prompt("what is your age?: ")
+      let ask1 = Number(ask)
+      if (typeof ask1 !== 'number') {
+        alert(ask1 + " is not a number")
+      }
+      else if (ask1 < 12) {
+          console.log("Access denied")
+      } else if (12 <= ask1 && ask1 <= 17) {
+          console.log("Limited access")
+      } else if (ask1 >=18){
+          console.log("Full access")
+      }
+    }
+    //t91()
+    function t92() {
+      function isPrime(num) {
+        if (num <= 1) return false; // numbers less than or equal to 1 are not prime
+        for (let i = 2; i <= Math.sqrt(num); i++) { // Check divisibility up to the square root of the number
+          if (num % i === 0) return false; // if divisible, not prime
+        }
+        return true; // if no divisors, it's prime
+      }
+      let n = prompt("Enter a number to check if it's prime:");
+      alert(isPrime(Number(n)) ? "Prime" : "Not Prime");
+    }
+    //t92()
+    function t93(){
+      function factorial(num) {
+        if (num <= 0 ||  !isNaN(num) === false) {
+          return "Please enter a positive integer.";
+        }
+        let result = 1;
+        for (let i = 1; i <= num; i++) {
+          result = result*i;
+        }
+        return result;
+      }
+      let number = prompt("Enter a positive integer to calculate its factorial:");
+      alert(factorial(Number(number)));
+        }
+        //t93()
+
+      function t94(){
+        function generateSequence(start, end) {
+          for (let i = start; i <= end; i++) {
+            if (i % 3 === 0 && i % 5 === 0) {
+              console.log("FizzBuzz");
+            } else if (i % 3 === 0) {
+              console.log("Fizz");
+            } else if (i % 5 === 0) {
+              console.log("Buzz");
+            } else {
+              console.log(i);
+            }
+          }
+        }
+        let start = Number(prompt("Start number:"));
+        let end = Number(prompt("End number:"));
+        generateSequence(start, end);
+      } //t94()
+
+      function t95(){
+        function triangleType(a, b, c) {
+          if (a + b <= c || a + c <= b || b + c <= a) {
+            return "Impossible";
+          }
+          if (a === b && b === c) {
+            return "Equilateral";
+          }
+          if (a === b || b === c || a === c) {
+            return "Isosceles";
+          }
+          return "Scalene";
+        }
+        let a = Number(prompt("Enter side a:"));
+        let b = Number(prompt("Enter side b:"));
+        let c = Number(prompt("Enter side c:"));
+        alert(triangleType(a, b, c));
+      } //t95()
+
+      function t96(){
+        function calculate(num1, num2, operator) {
+          if (operator === "+")
+            return num1 + num2;
+          if (operator === "-")
+            return num1 - num2;
+          if (operator === "*")
+            return num1 * num2;
+          if (operator === "/") {
+            if (num2 === 0) return "Cannot divide by zero.";
+            return num1 / num2;
+          }
+          return "Unknown operator.";
+        }
+        let num1 = Number(prompt("Enter the first number:"));
+        let num2 = Number(prompt("Enter the second number:"));
+        let operator = prompt("Enter the operator (+, -, *, /):");
+        alert(calculate(num1, num2, operator));
+      } //t96
+
+      function t97(){
+        function guessTheNumber() {
+          let target = Math.floor(Math.random() * 100)+1;
+          let attempts = 0;
+          let guess;
+          while(guess !== target){
+            guess = Number(prompt("Guess the number between 1 and 100:"));
+            attempts++;
+            if (guess < target) {
+              alert("Too low! Try again.");
+            } else if (guess > target) {
+              alert("Too high! Try again.");
+            } else{ break }
+          }
+          alert(`Congratulations! You guessed the number in ${attempts} attempts.`);
+        }
+        guessTheNumber();
+      } //t97()
+
+      function task8(){
+      function VWcount(string){
+       let vowels = 0; consonants = 0; len = string.length;
+       for (i = 0; i<len; i++){
+         char = string[i]
+         char = char.toLowerCase()
+         if (char ==="a"|| char ==="e"|| char ==="u"|| char ==="o"|| char ==="i"){
+           vowels += 1
+         } else{
+           consonants += 1
+         }
+       }
+       console.log("Vowels: "+ vowels);
+       console.log("Consonants: "+ consonants);
+      }
+        let input = prompt("Write your string: ");
+        VWcount(input);
+
+      } task8()
+
+
+      function t99(){
+        function countdownLoop(n) {
+          for (let i = n; i > 0; i--) {
+            console.log(i);
+          }
+          console.log("Blast off!");
+        }
+        function countdownRecursive(n) {
+          if (n <= 0) {
+            console.log("Blast off!");
+            return;
+          }
+          console.log(n);
+          countdownRecursive(n - 1);
+        }
+        let number = Number(prompt("Enter a number for countdown:"));
+        countdownLoop(number);
+        countdownRecursive(number);
+      } //t99()
+
+      function t910(){
+        function checkPalindrome(string) {
+          const len = string.length;
+          for (let i = 0; i < len / 2; i++) {
+            let ch = string[i];
+            ch = ch.toLowerCase()
+            if (ch !== string[len - 1 - i]) {
+              return 'It is not a palindrome';
+            }
+          }
+          return 'It is a palindrome';
+        }
+        let string = prompt("Enter a string: ");
+        let value = checkPalindrome(string);
+        console.log(value);
+    } //t910()
+  </script>
+
+</body>
+</html>

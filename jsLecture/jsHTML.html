@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+    <html>
+        <body>
+            <script>
+              //task 1
+           function greet() {
+             let user = {
+               name: prompt("What is your name?"),
+               age: prompt("What is your age?"),
+               favColor: prompt("Your favorite color")
+             }
+             if (user.age < 18){
+               console.log("You are too young" + user)
+             } else {
+               console.log("Welcome, " + user.name + "!")
+             }
+             console.log("Your favorite color " + user.favColor);
+           }
+           //greet();
+
+              //task 2
+              function task2() {
+                let age = 25;
+                let age2 = '25';
+                let age3 = Number(age2)
+                let name = "Alice";
+                let isStudent = true;
+
+                console.log(typeof age); // number
+                console.log(typeof name);
+                console.log(typeof age2);
+                console.log(typeof age3); // string
+                console.log(typeof isStudent); // boolean
+              }
+              //task2()
+
+              function calculator(){
+
+                let math = {
+                  number1: prompt("Enter first digit:"),
+                  number2: prompt("Enter second digit:")
+                }
+                let plus =  -(-(math.number1) - math.number2); //addition
+                let minus =  math.number1 - math.number2; //subtraction
+                let multiply = math.number1 * math.number2; //Multiplication
+                let divide = math.number1 / math.number2; //Division
+                console.log("addition:" + plus + " subtraction:"+ minus +" multiplication:"+ multiply +" division:" + divide);
+                alert("addition:" + plus + " subtraction:"+ minus +" multiplication:"+ multiply +" division:" + divide);
+              }
+              //calculator();
+
+              //task 4
+              function task4(){
+                let name = prompt("What is your name?: ");
+                let num = prompt("what is your number?: ");
+                console.log(name)
+                if (num%2===0){
+                  console.log("Your number is even.")
+                }
+                else{
+                  console.log("Your number is odd.")
+                }
+              }
+              //task4()
+
+              //task5
+              function task5() {
+                let req = {
+                  value1: prompt("Enter value 1:"),
+                  value2: prompt("Enter value 2:")
+                }
+                let check1 = (-(-(req.value1) - req.value2));
+                let check2 = (req.value2 * req.value1);
+
+                if (isNaN(check1) && isNaN(check2)) {
+                  console.log("It's not integer")
+                }
+                else {
+                  console.log(check1)
+                  console.log(check2)
+                }
+              }
+              //task5();
+
+              //task 6
+              function task6(){
+                let value1 = prompt("write value to recognize: ");
+                let value2 = Number(value1);
+                if (!isNaN(value2)){
+                  console.log(value1 * 2)
+                }
+                else {
+                  console.log("It's a text: " + value1.toUpperCase())
+                }
+              }
+              //task6()
+
+              //task 7
+              function password(){
+                let check = prompt("Write a password: ")
+                const pass = "JavaScript2024";
+                if (check !== pass){
+                  alert("Wrong password")
+                }
+                else {
+                  console.log("Correct password");
+                }
+              }
+              //password()
+
+              //task 8
+              function task8(){
+                const massive = [//Brand: Model: Working:
+                                "Porsche",
+                                930,
+                                true]
+                massive.forEach(Iis =>{
+                  if(typeof Iis === String){
+                    console.log(Iis.toLowerCase());
+                    console.log(typeof Iis);
+                  }
+                  else {
+                    console.log(Iis);
+                    console.log(typeof Iis);
+                  }
+                });
+              }
+              //task8()
+            </script>
+        </body>
+    </html>
+

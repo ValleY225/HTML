@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+<!--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">-->
+<!--  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>-->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    hr{
+      background-color: crimson;
+      padding: 1px 20px 1px 20px;
+    }
+    .space {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    button {
+      background-color: #e52222;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .confirmation {
+      display: none;
+      margin-top: 15px;
+      color: green;
+    }
+    .strength-indicator {
+      height: 10px;
+      width: 100%;
+      background-color: lightgray;
+    }
+    .strength-indicator span {
+      display: block;
+      height: 100%;
+    }
+    .review {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+    .rating {
+      color: gold;
+    }
+    .review-form {
+      margin-bottom: 20px;
+    }
+    .form-group { margin-bottom: 15px;
+    }
+    .result { margin-top: 15px; font-weight: bold;
+    }
+    #map {
+      height: 300px;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: darkgrey;
+    }
+    .banner {
+      background-image: url("homepage.jpg");
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    .banner h1 {
+      margin: 0;
+    }
+    .main-content {
+      display: grid;
+      gap: 20px;
+      padding: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .card {
+      background: #f4f4f4;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+    .footer p {
+      margin: 5px 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .search-container {
+      margin-bottom: 20px;
+    }
+    #results {
+      margin-top: 20px;
+    }
+    .result-item {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .category {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<div class="form-container">
+  <h2>Subscribe to Our Newsletter || Task#1</h2>
+  <form id="subscriptionForm">
+    <div class="space">
+      <label>Name:</label>
+      <input type="text"  required>
+    </div>
+    <div class="space">
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+    </div>
+    <div class="space">
+      <label>Newsletter Frequency:</label>
+      <div>
+        <label><input type="radio" value="Daily" required> Daily</label>
+        <label><input type="radio" value="Weekly"> Weekly</label>
+        <label><input type="radio" value="Monthly"> Monthly</label>
+      </div>
+    </div>
+    <button type="submit">Subscribe</button>
+  </form>
+  <div class="confirmation" id="confirmationMessage">Subscription successful! Thank you for subscribing.</div>
+</div>
+<script>
+  document.getElementById('subscriptionForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    document.getElementById('confirmationMessage').style.display = 'block';
+  });
+</script>
+
+<hr>
+
+<h2>Advanced Registration Form || Task#2</h2>
+<form>
+  <label>First Name:</label><br>
+  <input type="text" required><br>
+  <label>Last Name:</label><br>
+  <input type="text" required><br>
+  <label>Date of Birth:</label><br>
+  <input type="date" required><br>
+  <label for="email2">Email Address:</label><br>
+  <input type="email" id="email2" required><br>
+
+  <label for="password">Password:</label><br>
+  <input type="password" id="password" oninput="checkPasswordStrength()" required><br>
+  <div class="strength-indicator" id="strength-indicator">
+    <span></span>
+  </div>
+  <label for="confirm-password">Confirm Password:</label><br>
+  <input type="password" id="confirm-password" name="confirm-password" oninput="validatePasswordMatch()" required><br>
+  <span id="match-message"></span><br>
+  <input type="checkbox" required>
+  <label>I agree to the terms of service</label><br><br>
+  <button type="submit">Register</button>
+
+  <script>
+  function checkPasswordStrength() {
+    const password = document.getElementById('password').value;
+    const strengthIndicator = document.getElementById('strength-indicator');
+    let strength = 0;
+    if (password.length >= 8) strength++;
+    if (/[A-Z]/.test(password)) strength++;
+    if (/[a-z]/.test(password)) strength++;
+    if (/[0-9]/.test(password)) strength++;
+    if (/[^A-Za-z0-9]/.test(password)) strength++;
+    const colors = ['red', 'orange', 'yellow', 'lightgreen', 'green'];
+    strengthIndicator.style.width = (strength * 20) + '%';
+    strengthIndicator.style.backgroundColor = colors[strength - 1] || 'lightgray';
+  }
+  function validatePasswordMatch() {
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    const matchMessage = document.getElementById('match-message');
+    if (confirmPassword && password !== confirmPassword) {
+      matchMessage.textContent = 'Passwords do not match';
+      matchMessage.style.color = 'red';
+    } else {
+      matchMessage.textContent = '';
+    }
+  }
+</script>
+  </form>
+  <hr>
+
+  <h1>User Reviews || Task#3</h1>
+
+  <div class="review-form">
+    <h3>Add a Review</h3>
+    <form id="reviewForm">
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" required><br>
+      <label for="reviewText">Review:</label><br>
+      <textarea id="reviewText" rows="2" required></textarea><br>
+      <label for="rating">Rating:</label><br>
+      <select id="rating" required>
+        <option value="">Select Rating</option>
+        <option value="1">1 Star</option>
+        <option value="2">2 Stars</option>
+        <option value="3">3 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="5">5 Stars</option>
+      </select><br><br>
+      <button type="submit">Submit Review</button>
+    </form>
+  </div>
+  <div id="reviewsContainer">
+    <h3>Reviews</h3>
+  </div>
+  <button id="showMore">Show more reviews</button>
+
+  <script>
+    document.getElementById('reviewForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const reviewText = document.getElementById('reviewText').value;
+      const rating = document.getElementById('rating').value;
+      if (name && reviewText && rating) {
+        const reviewContainer = document.createElement('div');
+        reviewContainer.classList.add('review');
+        reviewContainer.innerHTML = `<strong>${name}</strong> <span class="rating">(${rating} Stars)</span><br>
+                    <p>${reviewText}</p>`;
+        document.getElementById('reviewsContainer').append(reviewContainer);
+        document.getElementById('reviewForm').reset();
+        alert('Review submitted successfully!');
+      }
+    });
+    document.getElementById('showMore').addEventListener('click', function() {
+      alert('Loading more reviews...');
+    });
+  </script>
+
+<hr>
+
+<h2>Order Form || Task#4</h2>
+<form id="orderForm">
+  <div class="form-group">
+    <label for="service">Select Service:</label>
+    <select id="service" required>
+      <option value="consultation" data-price="50">Consultation - $50</option>
+      <option value="development" data-price="200">Development - $200</option>
+      <option value="support" data-price="100">Support - $100</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" min="1" value="1" required>
+  </div>
+  <div class="form-group">
+    <label for="options">Additional Options:</label>
+    <select id="options">
+      <option value="none" data-price="0">None</option>
+      <option value="priority" data-price="30">Priority Service - $30</option>
+      <option value="extended-support" data-price="50">Extended Support - $50</option>
+    </select>
+  </div>
+  <button type="button" onclick="calculateCost()">Calculate Cost</button>
+</form>
+<div id="totalCost" class="result"></div>
+
+<script>
+  function calculateCost() {
+    const serviceElement = document.getElementById('service');
+    const quantityElement = document.getElementById('quantity');
+    const optionsElement = document.getElementById('options');
+    const servicePrice = parseFloat(serviceElement.options[serviceElement.selectedIndex].dataset.price);
+    const quantity = parseInt(quantityElement.value);
+    const optionsPrice = parseFloat(optionsElement.options[optionsElement.selectedIndex].dataset.price);
+    const totalCost = (servicePrice * quantity) + optionsPrice;
+    document.getElementById('totalCost').textContent = `Total Cost: $${totalCost.toFixed()}`;
+  }
+</script>
+
+<hr>
+
+<script>
+  function handleFormSubmission(event) {
+    event.preventDefault();
+    alert("Your message has been successfully sent!");
+  }
+  function initMap() {
+    const officeLocation = { lat: 37.7749, lng: -122.4194 }; // Example coordinates (San Francisco)
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 14,
+      center: officeLocation,
+    });
+    new google.maps.marker.AdvancedMarkerElement({
+      position: officeLocation,
+      map: map,
+    });
+  }
+</script>
+
+<div class="container">
+  <h2>Contact Us || Task#5</h2>
+  <form onsubmit="handleFormSubmission(event)">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name5" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email5" required>
+    </div>
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="2" required></textarea>
+    </div>
+    <button type="submit">Send Message</button>
+  </form>
+  <div id="map"></div>
+</div>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+
+<hr>
+
+<div class="container">
+  <h2>Order Queue Management || Task#6</h2>
+  <div class="form-group">
+    <input type="text" id="orderInput" placeholder="Enter order">
+    <button onclick="addOrder()">Add Order</button>
+  </div>
+  <div class="form-group">
+    <button onclick="processOrder()">Process Order (Dequeue)</button>
+    <button onclick="peekOrder()">Peek at Front Order</button>
+  </div>
+  <div id="queueDisplay" class="queue-display">The queue is currently empty.</div>
+</div>
+
+<script>
+  class OrderQueue {
+    constructor() {
+      this.queue = [];
+    }
+
+    enqueue(order) {
+      this.queue.push(order);
+      this.displayQueue();
+    }
+
+    dequeue() {
+      if (this.queue.length === 0) {
+        alert("The queue is empty. No orders to process.");
+        return;
+      }
+      const removedOrder = this.queue.shift();
+      alert(`Order ${removedOrder} has been processed.`);
+      this.displayQueue();
+    }
+
+    peek() {
+      if (this.queue.length === 0) {
+        alert("The queue is empty. No orders to peek at.");
+        return;
+      }
+      alert(`The order at the front of the queue is: ${this.queue[0]}`);
+    }
+
+    displayQueue() {
+      const displayElement = document.getElementById("queueDisplay");
+      displayElement.innerHTML = this.queue.length === 0
+        ? "The queue is currently empty."
+        : `Current queue: ${this.queue.join(', ')}`;
+    }
+  }
+
+  const orderQueue = new OrderQueue();
+  function addOrder() {
+    const orderInput = document.getElementById("orderInput").value;
+    if (orderInput) {
+      orderQueue.enqueue(orderInput);
+      document.getElementById("orderInput").value = "";
+    } else {
+      alert("Please enter an order.");
+    }
+  }
+  function processOrder() {
+    orderQueue.dequeue();
+  }
+  function peekOrder() {
+    orderQueue.peek();
+  }
+</script>
+
+
+<hr>
+
+<div class="banner">
+  <h1>Welcome Page || Task#7</h1>
+  <p>Your one-stop shop for the best products!</p>
+</div>
+
+<div class="main-content">
+  <div class="card">
+    <h2>Product 1</h2>
+    <p>Details about product 1.</p>
+  </div>
+  <div class="card">
+    <h2>Product 2</h2>
+    <p>Details about product 2.</p>
+  </div>
+  <div class="card">
+    <h2>Product 3</h2>
+    <p>Details about product 3.</p>
+  </div>
+  <div class="card">
+    <h2>Product 4</h2>
+    <p>Details about product 4.</p>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Contact us at: Log@email.com</p>
+  <p>Phone: +7-777-77-77</p>
+</div>
+
+<div class="search-container">
+  <h1>Search Form || Task#8</h1>
+  <label for="query">Search Query:</label>
+  <input type="text" id="query" placeholder="Enter search terms">
+
+  <label for="category">Category:</label>
+  <select id="category">
+    <option value="all">All Categories</option>
+    <option value="articles">Articles</option>
+    <option value="news">News</option>
+    <option value="documents">Documents</option>
+    <option value="books">Books</option>
+    <option value="tutorials">Tutorials</option>
+    <option value="events">Events</option>
+  </select>
+
+  <button onclick="search()">Search</button>
+</div>
+
+<div id="results"></div>
+
+<script>
+  const data = [
+    { title: 'Article 1', category: 'articles', content: 'This is a sample article about JavaScript.' },
+    { title: 'Article 2', category: 'articles', content: 'Learn about HTML and CSS in this article.' },
+    { title: 'News 1', category: 'news', content: 'Breaking news about the latest tech trends.' },
+    { title: 'Document 1', category: 'documents', content: 'Official document regarding new regulations.' },
+    { title: 'News 2', category: 'news', content: 'Tech companies announce new breakthroughs.' },
+    { title: 'Document 2', category: 'documents', content: 'Guidelines for project management.' },
+    { title: 'Book 1: JavaScript for Beginners', category: 'books', content: 'A comprehensive guide to learning JavaScript from scratch.' },
+    { title: 'Book 2: Mastering Python', category: 'books', content: 'Learn advanced Python programming techniques for software development.' },
+    { title: 'Tutorial: HTML and CSS Basics', category: 'tutorials', content: 'Step-by-step guide for mastering HTML and CSS to build responsive websites.' },
+    { title: 'Event: Tech Conference 2024', category: 'events', content: 'Join us for a virtual tech conference featuring talks on AI, machine learning, and web development.' },
+    { title: 'Tutorial: JavaScript Arrays', category: 'tutorials', content: 'A tutorial on working with arrays in JavaScript, including methods and examples.' },
+    { title: 'Event: Web Development Workshop', category: 'events', content: 'A hands-on workshop to learn the latest web development techniques and tools.' },
+    { title: 'Book 3: Data Structures and Algorithms', category: 'books', content: 'An in-depth guide to understanding data structures and algorithms for solving complex problems.' },
+    { title: 'Tutorial: Building APIs with Node.js', category: 'tutorials', content: 'Learn how to create and manage APIs using Node.js and Express.' },
+    { title: 'Event: Coding Bootcamp', category: 'events', content: 'Enroll in a 6-week coding bootcamp to accelerate your career in web development.' }
+  ];
+
+  function search() {
+    const query = document.getElementById('query').value.toLowerCase();
+    const category = document.getElementById('category').value;
+    const resultsContainer = document.getElementById('results');
+    let results = data.filter(item => {
+      const matchQuery = item.title.toLowerCase().includes(query) || item.content.toLowerCase().includes(query);
+      const matchCategory = category === 'all' || item.category === category;
+      return matchQuery && matchCategory;
+    });
+    resultsContainer.innerHTML = '';
+
+    if (results.length > 0) {
+      results.forEach(item => {
+        const resultDiv = document.createElement('div');
+        resultDiv.classList.add('result-item');
+        resultDiv.innerHTML = `
+                        <div class="category">${item.category.charAt(0).toUpperCase() + item.category.slice(1)}</div>
+                        <div class="title">${item.title}</div>
+                        <div class="content">${item.content}</div>
+                        <div class="books">${item.title}</div>
+                        <div class="tutorials">${item.title}</div>
+                        <div class="events">${item.title}</div>
+                    `;
+        resultsContainer.append(resultDiv);
+      });
+    } else {
+      resultsContainer.innerHTML = 'No results found.';
+    }
+  }
+</script>
+</body>
+</html>

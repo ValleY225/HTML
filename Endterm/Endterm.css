@@ -1,0 +1,116 @@
+body {
+  font-family: "Courier New", sans-serif;
+  background-color: #375E97;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.quiz-container {
+  background-color: rgba(220, 216, 216, 0.83);
+  border: 1px solid #FB6542;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+.quiz-header {
+  background-color: #FB6542;
+  color: white;
+  padding: 15px;
+  border-radius: 8px 8px 0 0;
+}
+#question {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  background: #375E97 ;
+  padding: 20px;
+  color: white;
+}
+#answerInput {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: calc(100% - 22px);
+  margin-bottom: 20px;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+button {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#submit {
+  background-color: #FB6542;
+  color: white;
+}
+#submit:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
+#next {
+  background-color: #FB6542;
+  color: white;
+}
+#next:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
+#score, #progress-text, #timer {
+  margin: 10px 0;
+  font-weight: bold;
+}
+#progress-bar {
+  width: 100%;
+  height: 10px;
+  margin-top: 10px;
+  background-color: #d3d3d3;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#progress-bar::-webkit-progress-bar {
+  background-color: #d3d3d3;
+}
+
+#progress-bar::-webkit-progress-value {
+  background-color: #FFBB00;
+}
+
+#progress-bar::-moz-progress-bar {
+  background-color: #1e90ff;
+}
+
+.popup {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgb(255, 187, 0);
+  color: Black;
+  padding: 10px ;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+.popup.show {
+  display: flex;
+}
+
+#results {
+  display: none;
+  margin-top: 20px;
+}
